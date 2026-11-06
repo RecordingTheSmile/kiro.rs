@@ -31,6 +31,8 @@ use serde_json::json;
 
 #[path = "chat_stream_gateway_tests.rs"]
 mod chat_stream_tests;
+#[path = "custom_models_gateway_tests.rs"]
+mod custom_models_tests;
 use std::{
     collections::{HashMap, HashSet},
     convert::Infallible,

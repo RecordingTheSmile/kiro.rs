@@ -328,6 +328,9 @@ export function ModelsSection() {
         {/* ── 自定义模型 Tab ───────────────────────────────────────────── */}
         {vendor === 'custom' && (
           <>
+            <p className="mb-3 text-xs text-muted-foreground">
+              id 是客户端使用的模型名，backendId 是发送给 Kiro 的模型 ID。自定义模型无需出现在上游模型列表中，实际可用性以调用结果为准。保存后立即生效。
+            </p>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
               <span className="text-xs text-muted-foreground">
                 {customCount > 0 ? `${customCount} 条自定义模型` : '暂无自定义模型'}

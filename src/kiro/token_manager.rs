@@ -1797,6 +1797,10 @@ impl MultiTokenManager {
         let Some(model) = model else {
             return CachedModelSupport::Unknown;
         };
+        // 自定义模型由用户指定，是否可调用交给上游请求判断。
+        if crate::model::custom_models::contains_backend(model) {
+            return CachedModelSupport::Unknown;
+        }
         let cache = self.model_cache.lock();
         let Some(entry) = cache.get(&id) else {
             return CachedModelSupport::Unknown;

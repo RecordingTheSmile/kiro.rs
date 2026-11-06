@@ -68,6 +68,21 @@ pub fn all() -> Vec<CustomModel> {
         .unwrap_or_default()
 }
 
+/// 判断映射后的后端 ID 是否由用户配置，不依赖上游模型列表。
+pub fn contains_backend(backend_id: &str) -> bool {
+    REGISTRY
+        .read()
+        .ok()
+        .and_then(|r| {
+            r.as_ref().map(|reg| {
+                reg.ordered
+                    .iter()
+                    .any(|m| m.backend_id.eq_ignore_ascii_case(backend_id))
+            })
+        })
+        .unwrap_or(false)
+}
+
 /// 是否存在 `backend_id` 等于给定值且声明支持 reasoning 的自定义模型。
 ///
 /// `map_model` 把别名映射成 backend_id 后，`model_supports_native_reasoning`
